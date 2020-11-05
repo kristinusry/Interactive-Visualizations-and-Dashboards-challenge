@@ -35,6 +35,35 @@ function updateMetadata(subject) {
     Object.entries(result).forEach(([key, value]) => {
         metaPanel.append("p").text(`${key}: ${value}`)
     });
+  
+  // Create guage
+  var data = [
+    {
+      type: "indicator",
+      mode: "gauge+number",
+      value: result.wfreq,
+      title: { text: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week", font: { color:"#154360" } },
+      gauge: {
+        axis: { range: [null, 9], tickwidth: 1, tickcolor: "#154360" },
+        bar: { color: "#F8C471" },
+        bgcolor: "white",
+        borderwidth: 2,
+        bordercolor: "gray",
+        steps: [
+          { range: [0, 1], color: "#EBF5FB" },
+          { range: [1, 2], color: "#D6EAF8" },
+          { range: [2, 3], color: "#AED6F1" },
+          { range: [3, 4], color: "#85C1E9" },
+          { range: [4, 5], color: "#5DADE2" },
+          { range: [5, 6], color: "#3498DB" },
+          { range: [6, 7], color: "#2874A6" },
+          { range: [7, 8], color: "#21618C" },
+          { range: [8, 9], color: "#1B4F72" }
+        ]
+      }
+    }
+  ];  
+  Plotly.newPlot("gauge", data);
   });
 }
 
@@ -78,6 +107,10 @@ function updateCharts(sample) {
     xaxis: {title:"OTU ID"},
   };
   Plotly.newPlot("bubble", [trace2], layout); 
+
+  
+
+
 });
 
   
