@@ -62,7 +62,25 @@ function updateCharts(sample) {
     text: otu_labels.slice(0,10).reverse()
   };
   Plotly.newPlot("bar", [trace1]);  
-  });
+  
+  // Create bubble chart
+  var trace2 = {
+    mode: "markers",
+    marker: {
+      size: sample_values,
+      color: otu_ids
+      },
+    x: otu_ids,
+    y: sample_values,
+    text: otu_labels
+  };
+  var layout = {
+    xaxis: {title:"OTU ID"},
+  };
+  Plotly.newPlot("bubble", [trace2], layout); 
+});
+
+  
 }
 
 // Function to update subject in the dropdown & charts on select
